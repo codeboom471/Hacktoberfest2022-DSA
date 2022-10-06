@@ -19,7 +19,7 @@ void print(int a[],int n)
 }
 int main()
 {
-    int arr[] = {2,1,5,6,9,75,3};
+    int arr[] = {2,99,5,6,9,75,3};
     int n = sizeof(arr)/(sizeof(arr[0]));
     cout<<" reverse: ";
     print(arr,n);
