@@ -9,6 +9,21 @@ int main()
 	{
 		scanf("%d",&a[i]);
 	}
+	// for (i=0;i<n-1;i++)
+	// {
+	// 	for (j=0;j<n-1-i;j++)
+	// 	{
+	// 		if (a[j]>a[j+1])
+	// 		{
+	// 		temp=a[j];
+	// 		a[j]=a[j+1];
+	// 		a[j+1]=temp;
+	// 	    }
+	// 	}
+	// }
+
+				// OR
+
 	for (i=0;i<n;i++)
 	{
 		for (j=i+1;j<n;j++)
@@ -21,8 +36,6 @@ int main()
 		    }
 		}
 	}
-
-	
 	printf("\nSorting Elements are: ");
 	for (i=0;i<n;i++)
 	{
