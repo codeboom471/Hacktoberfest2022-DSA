@@ -6,7 +6,7 @@ int divide(int a[],int start,int end)
     {
         int mid;
         mid=(start+end)/2;
-        divide(a,start,mid);
+        divide(a,start,mid)
         divide(a,mid+1,end);
         merge(a,start,mid,end);
     }
