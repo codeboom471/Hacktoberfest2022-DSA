@@ -23,7 +23,7 @@ int merge(int a[],int start,int mid,int end)
     }
     for(j=0;j<n2;j++)
     {
-        a2[j]=a[mid+1+j];
+       
     }
     i=0,j=0;
     int k=start;
@@ -50,8 +50,8 @@ int merge(int a[],int start,int mid,int end)
     while(j<n2)
     {
         a[k]=a2[j];
-        j++;
-        k++;
+        p++;
+        l++;
     }
 }
 int print(int a[],int n)
