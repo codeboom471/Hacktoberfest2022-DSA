@@ -1,6 +1,5 @@
 #include<bits/stdc++.h> 
 using namespace std; 
-long int count=0; 
 //Insertion Sort 
 void Insertion_Sort(int A[],int n) 
 { 
