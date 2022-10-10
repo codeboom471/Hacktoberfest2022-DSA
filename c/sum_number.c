@@ -4,7 +4,7 @@ int main()
 {
 	int sum=0,n,rem;
 	printf("enter the number :");
-	scanf("%d",n);
+	scanf("%d",&n);
 while(n>0)
 {
 	rem=n%10;
