@@ -1,0 +1,363 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+struct node
+{
+	int data;
+	struct node* next;
+};
+void display(struct node *p)
+{
+		while(p!=NULL)
+		{
+			printf("element:%d\n",p->data);
+			p=p->next;
+		}
+	printf("\n");
+}
+void count(struct node *head)
+{
+	struct node *p=head;
+	int count=0;
+	while(p!=NULL)
+	{
+		p=p->next;
+		count++;
+	}
+	printf("count=%d\n",count);
+}   
+void search(struct node *head,int n)
+{
+	printf("Enter which element you want to search\n");
+	scanf("%d",&n);
+	struct node *p=head;
+	while(p!=NULL)
+	{
+		if(p->data=n)
+		{
+			printf("Element is present\n");
+			break;
+		}
+		p=p->next;
+	}
+	if(p==NULL)
+	{
+		printf("Element is not present\n");
+	}
+}
+void insert_beg(struct node **p,int n)
+{
+	printf("\nEnter data which u want to add at begining\n");
+	scanf("%d",&n);
+	struct node *q;
+	q=(struct node *)malloc(sizeof(struct node));
+	q->data=n;
+	q->next=*p;
+	*p=q;
+}
+void insert_after(struct node *q,int loc,int num)
+{
+	printf("Enter loation and element\n");
+	scanf("%d%d",&loc,&num);
+	struct node *p,*r;
+	int i=1;
+	p=q;
+	if(loc>0)
+	{
+		while(i<loc)
+		{
+			p=p->next;
+			i++;
+			if(p==NULL)
+			{
+				printf("less element thn specified");
+				return ;
+			}
+		}
+		r=(struct node *)malloc(sizeof(struct node));
+		r->data=num;
+		r->next=p->next;
+		p->next=r;
+	}
+	else
+	{
+		printf("Enter corrrct position\n");
+	}
+}
+void delete_first_node(struct node **q)
+{
+	if(*q==NULL)
+	printf("No element to delete");
+	else 
+	{
+		struct node *p=*q;
+		*q=p->next;
+		free(p);
+	}
+}
+void delete_last_node(struct node **q)
+{
+	struct node *r,*s;
+	if(*q==NULL)
+	{
+		printf("no element to element");
+	}
+	else
+	{
+		s=*q;
+		while(s->next!=NULL)
+		{
+			r=s;
+			s=s->next;
+		}
+		r->next=NULL;
+		free(s);
+	}
+}
+void insert_at_end(struct node **p,int n)
+{
+	printf("Enter element which you want to insert at end\n");
+	scanf("%d",&n);
+	struct node *q,*r;
+	if(*p==NULL)
+	{
+		q=(struct node *)malloc(sizeof(struct node));
+		q->data=n;
+		q->next=NULL;
+		*p=q;
+	}
+	else 
+	{
+		r=*p;
+		while(r->next!=NULL)
+		{
+			r=r->next;
+		}
+		q=(struct node *)malloc(sizeof(struct node));
+		q->data=n;
+		q->next=NULL;
+		r->next=q;
+	}
+
+}
+void insert_before(struct node **q,int loc,int n)
+{
+	printf("Enter loation and element which u want to insert before\n");
+	scanf("%d %d",&loc,&n);
+	struct node *p,*r;
+	int i=1;
+	p=*q;
+	if(loc==1)
+	{
+		r=(struct node *)malloc(sizeof(struct node));
+		r->data=n;
+		r->next=*q;
+		*q=r;
+	}
+	else if(loc>1)
+	{
+		while(i<loc-2)
+		{
+			p=p->next;
+			i++;
+			if(p->next==NULL)
+			{
+				printf("less element than specified");
+				return;
+			}
+		}
+		r=(struct node *)malloc(sizeof(struct node));
+		r->data=n;
+		r->next=p->next;
+		p->next=r;
+	}
+	else 
+	{
+		printf("Please enter correct position\n");
+	}
+}
+void delete_at(struct node **q,int loc)
+{
+	printf("Enter location for delete");
+	scanf("%d",&loc);
+	struct node *p,*r;
+	p=*q;
+	int i=1;
+	if(loc==1)
+	{
+		p=*q;
+		*q=p->next;
+		free(p);
+	}
+	else if(loc>1)
+	{
+		while(i<loc)
+		{
+			r=p;
+			p=p->next;
+			i++;
+			if(p==NULL)
+			{
+				printf("less element than specified");
+				return ;
+			}
+		}
+		r->next=p->next;
+		free(p);
+	}
+	else 
+	{
+		printf("please enter correct position\n");
+	}
+}
+void delete_node(struct node **q,int value)
+{
+	printf("Enter value which u want to delete");
+	scanf("%d",&value);
+	struct node *p,*prev;
+	p=*q;
+	if(p!=NULL&&p->data!=value)
+	{
+		*q=p->next;
+		free(p);
+	}
+	else
+	{
+		while(p!=NULL&&p->data!=value)
+		{
+			prev=p;
+			p=p->next;
+		}
+		if(p==NULL)
+		{
+			printf("node not found");
+		}
+		else
+		{
+			prev->next=p->next;
+			free(p);
+		}
+	}
+}
+void delete_before(struct node **q,int loc)
+{
+	printf("enter location where u want to delete before");
+	scanf("%d",&loc);
+	struct node *p,*r,*s;
+	int i=1;
+	p=*q;
+	if(loc==2)
+	{
+		*q=p->next;
+		free(p);
+	}
+	else if(loc>2)
+	{
+		while(i<loc-2)
+		{
+			p=p->next;
+			i++;
+			if(p->next->next!=NULL)
+			{
+				printf("no element to delete");
+				return ;
+			}
+		}
+		r=p->next;
+		s=r->next;
+		p->next=s;
+		free(r);
+	}
+	else 
+	{
+		printf("Enter correct position to delete before\n");
+	}
+	}
+   
+int main()
+{
+	int total,choice,n,data,p,loc,value,num;
+   struct node *head;
+   struct node *second;
+   struct node *third;
+   head=(struct node *)malloc(sizeof(struct node));
+   second=(struct node *)malloc(sizeof(struct node));
+   third=(struct node *)malloc(sizeof(struct node));
+   head->data=23;
+   head->next=second;
+   
+   second->data=65;
+   second->next=third;
+   
+   third->data=78;
+   third->next=NULL;
+   while(1)
+   {
+   printf("Enter\n1 for count\n2 for display\n3 for search\n4 for insert at begining\n5 for insert after\n6 for delete first node\n7 for delete last node\n8 for insert at end\n9 for insert before\n10 for delete at\n11 for delete node\n12 for delete before\n13 for end\n");
+   printf("Enter choice");
+   scanf("%d",&choice);
+   
+    if(choice>12)
+   	{
+   		printf("End");
+   		break;
+	}
+	else
+	{
+		switch(choice)
+		{
+		case 1:
+		        count(head);
+		        break;
+		case 2:
+                display(head);
+                break;
+        case 3: 
+		        search(head,n);
+				break;
+		case 4:
+		
+		        insert_beg(&head,n);
+		        display(head);
+				break;
+		case 5:
+		      insert_after(head,loc,num);
+		      display(head);
+			  break;
+	    case 6:
+		      delete_first_node(&head);
+		      display(head);
+			  break;
+	    case 7:
+		      delete_last_node(&head);
+			  display(head);
+			  break;
+	    case 8:
+		      insert_at_end(&head,n);
+			  display(head);
+			  break;
+		case 9:
+		      insert_before(&head,loc,n);
+			  display(head);
+			  break;
+	    case 10:
+		      delete_at(&head,n);
+			  display(head);
+			  break;
+	    case 11:
+		      delete_node(&head,value);
+			  display(head);
+			  break;
+		case 12:
+		      delete_before(&head,loc);
+			  display(head);
+			  break;	  		  		  	  		  		  		  				        
+        default:
+		        printf("Invalid");
+				break;        
+}
+}
+}
+}
+
+   
